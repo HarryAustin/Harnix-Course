@@ -1,0 +1,5 @@
+Black main color : #090909
+White main background: #FFFFFF
+Main Ash Total Background: #EFEFEF
+Ash secondary background : #F9F9F9
+Blue primary color: #3B49DF
