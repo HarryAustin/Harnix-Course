@@ -15,16 +15,17 @@ exports.registerGetController = (req, res, next) => {
 exports.registerUser = async (req, res, next) => {
   try {
     const { error, value } = registerValidation(req.body);
-    value.trends = value.trends
-      .split("#")
-      .slice(1)
-      .map((values) => values.trim());
-    console.log(value);
     if (error) {
       return res.status(400).send(error);
     } else {
+      value.trends = value.trends
+        .split("#")
+        .slice(1)
+        .map((values) => values.trim());
       const salt = await bcrypt.genSalt(10);
       value.password = await bcrypt.hash(value.password, salt);
+      value.profilePicture = req.file.path;
+      console.log(req.file);
       const user = await User.create(value);
       res.redirect("login-page");
     }

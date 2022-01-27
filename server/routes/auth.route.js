@@ -10,17 +10,15 @@ const { loginLimitter } = require("../services/login_throttle");
 const Route = express.Router();
 
 const storage = multer.diskStorage({
-  destination: "media/profile-pictures",
+  destination: "media/profile pictures",
+  filename: (req, file, cb) => {
+    cb(null, file.destination + Date.now().toString() + file.originalname);
+  },
 });
-
-const ProfilePictureMulter = multer({ storage: storage });
+const upload = multer({ storage: storage });
 
 // POST
-Route.post(
-  "/register",
-  ProfilePictureMulter.single("profilePicture"),
-  registerUser
-);
+Route.post("/register", upload.single("profile"), registerUser);
 Route.post("/login", loginLimitter, loginUser);
 
 // GET
