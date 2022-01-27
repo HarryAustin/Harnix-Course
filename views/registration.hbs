@@ -27,11 +27,12 @@
         <div class="form__heading">
             <h1>Register user</h1>
         </div>
-        <form>
+        <form method="POST" action="/auth/v1/register">
             <input type="text" name="username" placeholder="username e.g harry_writer"/>
             <input type="text" name="name" placeholder="name e.g harrison austin"/>
             <input type="email" name="email" placeholder="email e.g harrison@gmail.com"/>
             <input type="password" name="password" placeholder="your password"/>
+            <input type="password" name="confirmPassword" placeholder="confirm your password"/>
             <input type="text" name="trends" placeholder="trends e.g backend tech code_newbie"/>
             <label for="profilePicture"> profile picture
             <input type="file" name="profilePicture"  class="form__picture"/>

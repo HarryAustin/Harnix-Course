@@ -5,16 +5,26 @@ const passport = require("../services/passport");
 const bcrypt = require("bcrypt");
 const User = require("../models/user.model");
 
+// Register GET controller to render hbs/html page
+
+exports.registerGetController = (req, res, next) => {
+  res.render("registration", { layout: false });
+};
+
+// Register POST controller to handle POST logic
 exports.registerUser = async (req, res, next) => {
   try {
     const data = registerValidation(req.body);
+    console.log(data);
     const { error } = passwordValidation(req.body.password);
     if (error) {
-      return res.status(400).json({ error: error });
+      return res.status(400).send(error);
     } else {
-      data.password = await bcrypt.hash(data.password, 10);
+      const salt = await bcrypt.genSalt(10);
+      console.log(data.password, salt);
+      data.password = await bcrypt.hash(data.password, salt);
       const user = await User.create(data);
-      res.json({ message: "user created successfully" });
+      res.send("User created sucessfully");
     }
   } catch (err) {
     if (err.code == 11000) {
@@ -29,6 +39,13 @@ exports.registerUser = async (req, res, next) => {
   }
 };
 
+// GET Controller to render hns/html page
+
+exports.loginGetController = (req, res, next) => {
+  res.render("login", { layout: false });
+};
+
+// POST Controller to handle POST LOGIC with Data
 exports.loginUser = (req, res, next) => {
   try {
     passport.authenticate("local", (err, user, info) => {
@@ -40,7 +57,7 @@ exports.loginUser = (req, res, next) => {
           return next(err);
         }
       });
-      res.json({ message: "logged in success" });
+      res.send("logged in success");
     })(req, res, next);
   } catch (err) {
     console.log(err);

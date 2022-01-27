@@ -1,6 +1,5 @@
 const joi = require("joi");
 const { regValidationError } = require("../services/errorHandler");
-const { passwordValidation } = require("../services/password_checker");
 
 const registerValidation = (body) => {
   const registerValidationSchema = joi.object({
@@ -26,6 +25,8 @@ const registerValidation = (body) => {
       "any.required": "please, confirm your password",
       "any.only": "passwords do not match, please try again",
     }),
+    trends: joi.string(),
+    profilePicture: joi.string(),
   });
   const { error, value } = registerValidationSchema.validate(body);
   if (error) {
