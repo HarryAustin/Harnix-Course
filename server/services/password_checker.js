@@ -10,6 +10,10 @@ exports.passwordValidation = (password) => {
       },
     };
   } else {
-    return true;
+    return {
+      error: {
+        password: null,
+      },
+    };
   }
 };

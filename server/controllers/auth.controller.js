@@ -14,26 +14,31 @@ exports.registerGetController = (req, res, next) => {
 // Register POST controller to handle POST logic
 exports.registerUser = async (req, res, next) => {
   try {
-    const data = registerValidation(req.body);
-    console.log(data);
-    const { error } = passwordValidation(req.body.password);
+    const { error, value } = registerValidation(req.body);
+    value.trends = value.trends
+      .split("#")
+      .slice(1)
+      .map((values) => values.trim());
+    console.log(value);
     if (error) {
       return res.status(400).send(error);
     } else {
       const salt = await bcrypt.genSalt(10);
-      console.log(data.password, salt);
-      data.password = await bcrypt.hash(data.password, salt);
-      const user = await User.create(data);
-      res.send("User created sucessfully");
+      value.password = await bcrypt.hash(value.password, salt);
+      const user = await User.create(value);
+      res.redirect("login-page");
     }
   } catch (err) {
     if (err.code == 11000) {
-      return res.status(400).json({
-        errors: {
-          username: `username ${req.body.username} is already taken`,
-        },
-        message: usernameGenerator(req.body.username),
-      });
+      return res
+        .status(400)
+        .send(
+          `errors: username ${
+            req.body.username
+          } is already taken \n use message: ${usernameGenerator(
+            req.body.username
+          )} instead`
+        );
     }
     next(err);
   }
