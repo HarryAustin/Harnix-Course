@@ -12,7 +12,7 @@ const Route = express.Router();
 const storage = multer.diskStorage({
   destination: "media/profile pictures",
   filename: (req, file, cb) => {
-    cb(null, file.destination + Date.now().toString() + file.originalname);
+    cb(null, Math.floor(Math.random() * 100) + file.originalname);
   },
 });
 const upload = multer({ storage: storage });

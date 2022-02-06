@@ -25,7 +25,6 @@ exports.registerUser = async (req, res, next) => {
       const salt = await bcrypt.genSalt(10);
       value.password = await bcrypt.hash(value.password, salt);
       value.profilePicture = req.file.path;
-      console.log(req.file);
       const user = await User.create(value);
       res.redirect("login-page");
     }
@@ -45,7 +44,7 @@ exports.registerUser = async (req, res, next) => {
   }
 };
 
-// GET Controller to render hns/html page
+// GET Controller to render hbs/html page
 
 exports.loginGetController = (req, res, next) => {
   res.render("login", { layout: false });
@@ -63,7 +62,7 @@ exports.loginUser = (req, res, next) => {
           return next(err);
         }
       });
-      res.send("logged in success");
+      res.redirect("/blog/v1/articles");
     })(req, res, next);
   } catch (err) {
     console.log(err);

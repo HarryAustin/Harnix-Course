@@ -9,6 +9,9 @@ const passport = require("./server/services/passport");
 // MY LIBRARIES
 const connectDB = require("./server/database/database");
 const authRoute = require("./server/routes/auth.route");
+const articleRoute = require("./server/routes/article.route");
+const userRoute = require("./server/routes/user.route");
+const { userIsLoggedIn } = require("./server/middlewares/authLogin.middleware");
 
 // SET up connect mongo
 const sessionStore = mongoStore.create({
@@ -18,7 +21,7 @@ const sessionStore = mongoStore.create({
 
 const app = express();
 
-// Json Middlware
+// Form for req.body middleware
 app.use(express.urlencoded({ extended: true }));
 
 // Session Authentication
@@ -37,7 +40,27 @@ app.use(passport.session());
 
 // VIEW ENGINE
 app.set("view engine", "hbs");
-app.engine("hbs", hbs({ extname: "hbs" }));
+app.engine(
+  "hbs",
+  hbs({
+    extname: "hbs",
+    helpers: {
+      trimList: (list) => {
+        let string = (() => {
+          let finished = "";
+          for (let i = 0; i < list.length; i++) {
+            finished += `#${list[i]} `;
+          }
+          return finished;
+        })();
+        return string;
+      },
+      dateFormat: (date) => {
+        return date.toLocaleDateString();
+      },
+    },
+  })
+);
 // END
 
 // ASSETS SETUP
@@ -50,6 +73,8 @@ app.use("/media", express.static(path.resolve(__dirname, "media")));
 
 // Routes
 app.use("/auth/v1", authRoute);
+app.use("/blog/v1", userIsLoggedIn, articleRoute);
+app.use("/user/v1", userIsLoggedIn, userRoute);
 
 app.get("/", (req, res) => {
   res.render("index", { layout: false });

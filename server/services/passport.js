@@ -26,7 +26,6 @@ const authHandler = async (username, password, cb) => {
 passport.use(new LocalStrategy(authHandler));
 
 passport.serializeUser((user, cb) => {
-  console.log("user", user);
   cb(null, user.id);
 });
 

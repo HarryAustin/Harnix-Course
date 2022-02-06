@@ -10,7 +10,7 @@ const userSchema = new Schema({
   following: [],
   posts: [],
   trends: [],
-  datJoined: Date,
+  dateJoined: { type: Date, default: Date.now() },
 });
 
 module.exports = model("users", userSchema);

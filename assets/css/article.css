@@ -28,6 +28,15 @@
   src: url("/assets/fonts/BalsamiqSans-Regular.ttf");
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.hidden_user_id {
+  display: none;
+}
+
 body {
   font-size: 10px;
   background: var(--primary-ash-background);
@@ -306,7 +315,7 @@ header img {
 
 .content__author__other {
   margin-top: 2rem;
-  height: 12rem;
+  height: auto;
   background: var(--secondary-ash-background);
   border-radius: 5px;
   padding: 1rem;
@@ -330,13 +339,13 @@ header img {
 
 .content__author__other__post > h1 {
   font-size: 0.8rem;
-  color: var(--black-primary-color);
+  color: rgba(0, 0, 0, 1);
   opacity: 0.7;
-  font-weight: 100;
-  margin: 0.5rem 0;
+  font-weight: 700;
+  margin: 0.2rem 0;
 }
 
 .content__author__other__post > h3 {
-  opacity: 0.6;
+  color: rgba(0, 0, 0, 0.6);
   font-weight: 200;
 }
