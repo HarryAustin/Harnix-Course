@@ -25,7 +25,7 @@
           <img src="/assets/icons/Notification.png" alt="notification" />
           <img
             class="header__profile__pic"
-            src="/media/Profile Pictures/001.jpg"
+            src="/{{ profilePicture }}"
             alt="profile_pic"
           />
         </div>
@@ -73,100 +73,39 @@
                 <h1>New Posts</h1>
             </div>
             {{!-- BLOG POST --}}
-            <div class="blog__post">
-                <div class="blog__post__profile">
-                    <img src="/media/Profile Pictures/009.jpg" class="blog__post__profile__picture" />
-                    <div class="blog__post__profile__name__and__time__posted">
-                        <h2>Tracy Staurtman</h2>
-                        <p>Jan 12 (2 hours ago)</p>
-                    </div>
-                </div>
-                <div class="blog__post__title">
-                    <h1>OOPs Concept in TypeScript. What is the 4, Basics of Object Oriented Programming Fundamentals and their examples
-                    </h1>
-                    <h2>#programming #typescript #javascript</h2>
-                </div>
-                <div class="blog__post__reactions">
-                    <div class="blog__post__likes__comments">
-                        <span class="blog__post__likes">
-                            <img src="/assets/icons/Heart.png" alt="heart" />
-                            <p>4 Reactions</p>
-                        </span>
-                        <span class="blog__post__likes">
-                            <img src="/assets/icons/comment.png" alt="comment" />   
-                            <p>3 comments</p>
-                        </span>
-                    </div>
-                    <div class="blog__post__read__and__save">
-                        <p>3 min read</p>
-                        <button>Save</button>
-                    </div>
-                </div>
-            </div>
-
-
-             <div class="blog__post">
-                <div class="blog__post__profile">
-                    <img src="/media/Profile Pictures/009.jpg" class="blog__post__profile__picture" />
-                    <div class="blog__post__profile__name__and__time__posted">
-                        <h2>Tracy Staurtman</h2>
-                        <p>Jan 12 (2 hours ago)</p>
-                    </div>
-                </div>
-                <div class="blog__post__title">
-                    <h1>OOPs Concept in TypeScript. What is the 4, Basics of Object Oriented Programming Fundamentals and their examples
-                    </h1>
-                    <h2>#programming #typescript #javascript</h2>
-                </div>
-                <div class="blog__post__reactions">
-                    <div class="blog__post__likes__comments">
-                        <span class="blog__post__likes">
-                            <img src="/assets/icons/Heart.png" alt="heart" />
-                            <p>4 Reactions</p>
-                        </span>
-                        <span class="blog__post__likes">
-                            <img src="/assets/icons/comment.png" alt="comment" />   
-                            <p>3 comments</p>
-                        </span>
-                    </div>
-                    <div class="blog__post__read__and__save">
-                        <p>3 min read</p>
-                        <button>Save</button>
-                    </div>
-                </div>
-            </div>
-
-
-             <div class="blog__post">
-                <div class="blog__post__profile">
-                    <img src="/media/Profile Pictures/009.jpg" class="blog__post__profile__picture" />
-                    <div class="blog__post__profile__name__and__time__posted">
-                        <h2>Tracy Staurtman</h2>
-                        <p>Jan 12 (2 hours ago)</p>
-                    </div>
-                </div>
-                <div class="blog__post__title">
-                    <h1>OOPs Concept in TypeScript. What is the 4, Basics of Object Oriented Programming Fundamentals and their examples
-                    </h1>
-                    <h2>#programming #typescript #javascript</h2>
-                </div>
-                <div class="blog__post__reactions">
-                    <div class="blog__post__likes__comments">
-                        <span class="blog__post__likes">
-                            <img src="/assets/icons/Heart.png" alt="heart" />
-                            <p>4 Reactions</p>
-                        </span>
-                        <span class="blog__post__likes">
-                            <img src="/assets/icons/comment.png" alt="comment" />   
-                            <p>3 comments</p>
-                        </span>
-                    </div>
-                    <div class="blog__post__read__and__save">
-                        <p>3 min read</p>
-                        <button>Save</button>
-                    </div>
-                </div>
-            </div>
+            {{#each posts}}
+            <a href="article/{{this._id}}">
+              <div class="blog__post">
+                  <div class="blog__post__profile">
+                      <img src="/{{ this.userDetails.profilePicture }}" class="blog__post__profile__picture" />
+                      <div class="blog__post__profile__name__and__time__posted">
+                          <h2>{{ this.userDetails.name }}</h2>
+                          <p>{{ dateFormat this.dateCreated }}</p>
+                      </div>
+                  </div>
+                  <div class="blog__post__title">
+                      <h1>{{this.title}}</h1>
+                      <h2>{{trimList this.trends}} </h2>
+                  </div>
+                  <div class="blog__post__reactions">
+                      <div class="blog__post__likes__comments">
+                          <span class="blog__post__likes">
+                              <img src="/assets/icons/Heart.png" alt="heart" />
+                              <p>{{this.likes.length}} Reactions</p>
+                          </span>
+                          <span class="blog__post__likes">
+                              <img src="/assets/icons/comment.png" alt="comment" />   
+                              <p>{{this.comments.length}} comments</p>
+                          </span>
+                      </div>
+                      <div class="blog__post__read__and__save">
+                          <p>3 min read</p>
+                          <button>Save</button>
+                      </div>
+                  </div>
+              </div>
+            </a>
+            {{/each}}
             {{!-- END BLOG POST --}}
         </div>
       <div class="content__ads">

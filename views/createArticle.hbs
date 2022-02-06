@@ -1,0 +1,65 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ blog.title }}</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/createArticle.css" />
+    {{!-- <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />  --}}
+    {{!-- <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_style.min.css" rel="stylesheet" type="text/css" />   --}}
+    <link rel="stylesheet" href="/assets/css/froala_editor.pkgd.min.css" />
+    <link rel="stylesheet" href="/assets/css/froala_editor.min.css" />
+</head>
+  <body>
+    {{! header }}
+    <div class="body__default">
+      <header class="container">
+        <div class="header__left">
+          <div class="header__logo">
+            <h2>DEV</h2>
+          </div>
+          <div class="header__search">
+            <span class="header__search__icon">
+              <input type="search" placeholder="search..." />
+              <img src="/assets/icons/Search.png" alt="search_icon" />
+            </span>
+          </div>
+        </div>
+        <div class="header__right">
+          <button>Create Post</button>
+          <img src="/assets/icons/Notification.png" alt="notification" />
+         <img src = "/{{ postOwner.profilePicture }}" alt="profile__picture" class="header__profile__pic" />
+        </div>
+      </header>
+    </div>
+
+    {{!-- End header --}}
+
+    {{!-- Start main body with form as well --}}
+    <form class="article__form" method="POST" action="createArticle" enctype="multipart/form-data">
+      <h1> Write your article here </h1>
+      <div class="article__title">
+          <label for="title">Title: </label>
+          <input name="title" id="title" type="text" placeholder="title e.g 10 Reasons why you should study backend" />
+      </div>
+      <input type="file" name="coverPhoto" class="article__photo"/>
+    <textarea name="body" class="editorTextArea"></textarea>
+     <div class="article__trends">
+          <label for="trends">Trends: </label>
+          <input name="trends" id="trends" type="text" placeholder="backend tech code codeNewbie" />
+      </div>
+    <button>Submit</button>
+    </form>  
+
+  <div class="fr-view">
+  </div>
+
+    {{!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script> --}}
+    <script src="/assets/froala_editor.pkgd.min.js"></script>
+    <script>
+      const editor = new FroalaEditor('textarea', {
+        fileUploadURL: '/media/Blog pictures'
+     });
+    </script>
+  </body>
+</html>

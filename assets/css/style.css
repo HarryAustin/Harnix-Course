@@ -32,6 +32,13 @@ body {
   font-size: 10px;
   background: var(--primary-ash-background);
 }
+
+a{
+  text-decoration:none;
+  color:initial;
+}
+
+
 .body__default {
   width: initial;
   background: var(--white-main-background);
@@ -198,7 +205,7 @@ header img {
 .blog__post__profile__name__and__time__posted > h2 {
   color: var(--black-primary-color);
   opacity: 0.7;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   letter-spacing: 0.6px;
 }
 
@@ -207,8 +214,9 @@ header img {
   opacity: 0.6;
   font-size: 0.6rem;
   letter-spacing: 0.6px;
-  margin-top: 0.1rem;
+  margin-top: 0.3rem;
   font-weight: 100;
+  line-height: 0.8rem;
 }
 
 .blog__post__title {
@@ -222,7 +230,8 @@ header img {
   font-size: 1.5rem;
   font-weight: 900;
   overflow: hidden;
-  height: 5.3rem;
+  height: auto;
+  padding:0.3rem;
   width: 40rem;
   position: relative;
 }
