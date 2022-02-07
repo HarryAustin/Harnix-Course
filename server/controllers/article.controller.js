@@ -13,7 +13,7 @@ exports.articlesListController = async (req, res, next) => {
       .find({
         $or: [{ trends: { $in: trends } }, { user: { $in: following } }],
       })
-      .sort({ dateCreated: -1 })
+      .sort({ _id: -1 })
       .lean();
     res.render("index", {
       layout: false,
@@ -29,7 +29,6 @@ exports.articlesListController = async (req, res, next) => {
 exports.articlesBlog = async (req, res, next) => {
   try {
     let bool;
-    let following = "Follow";
     const blogId = req.params.id;
     if (!blogId || blogId.length !== 24) {
       return res.send("Sorry Article does not exist");
@@ -58,7 +57,6 @@ exports.articlesBlog = async (req, res, next) => {
       bool: bool,
       postOwner: postOwner,
       otherPost: otherPost,
-      following: following,
     });
   } catch (err) {
     console.log(err);
@@ -85,7 +83,7 @@ exports.createArticlePost = async (req, res, next) => {
       profilePicture: req.user.profilePicture,
     };
     const Blog = await articleModel.create(data);
-    res.send(Blog);
+    res.redirect("articles");
   } catch (err) {
     console.log(err);
   }

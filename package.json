@@ -38,7 +38,8 @@
     "redis": "^3.0.2",
     "socket.io": "^3.1.2",
     "unique-names-generator": "^4.6.0",
-    "validator": "^13.6.0"
+    "validator": "^13.6.0",
+    "wysiwyg-editor-node-sdk": "^4.0.9"
   },
   "devDependencies": {
     "chai": "^4.3.4",
