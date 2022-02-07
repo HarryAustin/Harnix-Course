@@ -85,7 +85,7 @@
           </div>
           <p class="hidden_user_id">{{ postOwner._id}}</p>
           {{#if bool }}
-            <button class="follow__author"></button>
+            <button class="follow__author">{{following}}</button>
           {{/if }}
           <div class="content__author__date__joined">
             <h2>Joined</h2>
@@ -115,7 +115,7 @@
       followBtn.textContent = localStorage.getItem('followMsg') || 'Follow'; //for refresh
 
       followBtn.addEventListener('click', (e) => {
-      fetch(`/user/v1/follow/${postOwnerId}`, { method: 'GET'})
+      fetch(`/user/v1/follow/${postOwnerId}`, { method: 'POST'})
         .then(res => res.json())
         .then(jsonRes => {
           followBtn.textContent = jsonRes.following;

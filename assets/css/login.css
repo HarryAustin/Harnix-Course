@@ -185,3 +185,16 @@ header img {
   border: 1px solid var(--black-primary-color);
   background: var(--white-main-background);
 }
+
+.form > h3 {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: "BodyFontRegular";
+}
+
+.form > h3 a {
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 800;
+  text-decoration: none;
+}

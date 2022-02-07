@@ -13,6 +13,9 @@ const articleRoute = require("./server/routes/article.route");
 const userRoute = require("./server/routes/user.route");
 const { userIsLoggedIn } = require("./server/middlewares/authLogin.middleware");
 
+const FroalaEditor = require("./node_modules/wysiwyg-editor-node-sdk/lib/froalaEditor.js");
+const fs = require("fs");
+
 // SET up connect mongo
 const sessionStore = mongoStore.create({
   mongoUrl: process.env.MONGO_URI,
@@ -97,6 +100,34 @@ app.post("/registration-post", (req, res) => {
 app.get("/login", (req, res) => {
   console.log(req.body);
   res.render("login", { layout: false });
+});
+
+// FOR FROALA EDITOR IMAGES
+// /medi/cover_photo states where to store images... and its a public directory as well
+
+app.post("/upload_image", (req, res) => {
+  const folderName = "content_imgs";
+  fs.mkdir(path.resolve(__dirname, "media", folderName), (err) => {
+    FroalaEditor.Image.upload(req, "/media/content_imgs/", (err, data) => {
+      if (err) {
+        console.log(err);
+        return res.send(JSON.stringify(err));
+      }
+      res.send(data);
+    });
+  });
+});
+
+// END
+
+app.use((req, res, next) => {
+  res.send(
+    "This is a 404 error, normally you will need some client to show this on a frontend, from love Harnix tech!"
+  );
+});
+
+app.use((err, req, res, next) => {
+  res.send("Why is there an error showing nah!!... Me im tired o... LOL!");
 });
 
 const PORT = process.env.PORT || 3000;

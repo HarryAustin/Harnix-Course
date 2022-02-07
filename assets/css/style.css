@@ -33,11 +33,10 @@ body {
   background: var(--primary-ash-background);
 }
 
-a{
-  text-decoration:none;
-  color:initial;
+a {
+  text-decoration: none;
+  color: initial;
 }
-
 
 .body__default {
   width: initial;
@@ -141,8 +140,8 @@ header img {
 .content {
   margin-top: 2rem;
   display: grid;
-  grid-template-columns: 1fr 3fr 2fr;
-  grid-gap: 3rem;
+  grid-template-columns: 2fr 3fr 2fr;
+  grid-gap: 2.5rem;
 }
 
 .content__nav ul li {
@@ -231,7 +230,7 @@ header img {
   font-weight: 900;
   overflow: hidden;
   height: auto;
-  padding:0.3rem;
+  padding: 0.3rem;
   width: 40rem;
   position: relative;
 }
