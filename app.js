@@ -91,12 +91,6 @@ app.get("/registration", (req, res) => {
   res.render("registration", { layout: false });
 });
 
-app.post("/registration-post", (req, res) => {
-  console.log(req.body);
-  // res.render("registration", { layout: false });
-  res.send("registered");
-});
-
 app.get("/login", (req, res) => {
   console.log(req.body);
   res.render("login", { layout: false });
