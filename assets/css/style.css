@@ -1,0 +1,354 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --black-primary-color: #090909;
+  --white-main-background: #ffffff;
+  --primary-ash-background: #efefef;
+  --secondary-ash-background: #f9f9f9;
+  /* --primary-blue-color: #3b49df; */
+  --primary-blue-color: rgba(59, 73, 223, 0.9);
+}
+
+@font-face {
+  font-family: titleFont;
+  src: url("/assets/fonts/ChelaOne-Regular.ttf");
+}
+
+@font-face {
+  font-family: BodyFontBold;
+  src: url("/assets/fonts/BalsamiqSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: BodyFontRegular;
+  src: url("/assets/fonts/BalsamiqSans-Regular.ttf");
+}
+
+body {
+  font-size: 10px;
+  background: var(--primary-ash-background);
+}
+
+a {
+  text-decoration: none;
+  color: initial;
+}
+
+.body__default {
+  width: initial;
+  background: var(--white-main-background);
+}
+
+.container {
+  width: 85%;
+  margin: auto;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0 1rem 0;
+}
+
+.header__logo {
+  width: 3rem;
+  height: 2.2rem;
+  background: var(--black-primary-color);
+  border-radius: 3px;
+}
+
+header .header__logo > h2 {
+  font-family: "titleFont";
+  font-size: 1.5rem;
+  font-weight: lighter;
+  color: var(--primary-ash-background);
+  text-align: center;
+  line-height: 2.2rem;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 33%;
+}
+
+.header__search__icon {
+  display: flex;
+  align-items: center;
+}
+
+.header__search__icon {
+  position: relative;
+}
+
+.header__search__icon > img {
+  position: absolute;
+  right: 0.5rem;
+}
+
+.header__search__icon > input {
+  width: 20rem;
+  height: 2.2rem;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid rgba(9, 9, 9, 0.2);
+  padding: 0 0.5rem 0 0.5rem;
+}
+
+.header__right {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__right > button {
+  background: transparent;
+  outline: none;
+  border: 2px solid rgba(59, 73, 223, 0.4);
+  width: 6.5rem;
+  padding: 0.5rem;
+  color: var(--primary-blue-color);
+  font-family: "BodyFontRegular";
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.header__profile__pic {
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 50%;
+}
+
+header img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* END HEADER */
+
+/* START SECTION */
+
+.content {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr;
+  grid-gap: 2.5rem;
+}
+
+.content__nav ul li {
+  display: flex;
+  align-items: center;
+  /* background: blue; */
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.content__nav ul li h3 {
+  margin-left: 0.5rem;
+  font-family: BodyFontRegular;
+  opacity: 0.7;
+}
+
+.content__nav img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* CONTENT POST */
+
+.content__post .content__post__header > h1,
+.content__ads .content__post__header > h1 {
+  font-family: "titleFont";
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+/* BLOG POST */
+
+.blog__post {
+  background: var(--white-main-background);
+  height: 15rem;
+  border-radius: 7px;
+  border: 1px solid var(--primary-ash-background);
+  padding: 1rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.blog__post__profile {
+  display: flex;
+  align-items: center;
+}
+
+.blog__post__profile__picture {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+.blog__post__profile__name__and__time__posted {
+  font-family: "BodyFontRegular";
+  margin-left: 0.5rem;
+}
+
+.blog__post__profile__name__and__time__posted > h2 {
+  color: var(--black-primary-color);
+  opacity: 0.7;
+  font-size: 0.8rem;
+  letter-spacing: 0.6px;
+}
+
+.blog__post__profile__name__and__time__posted > p {
+  color: var(--black-primary-color);
+  opacity: 0.6;
+  font-size: 0.6rem;
+  letter-spacing: 0.6px;
+  margin-top: 0.3rem;
+  font-weight: 100;
+  line-height: 0.8rem;
+}
+
+.blog__post__title {
+  margin-top: 0.7rem;
+  margin-left: 2.5rem;
+  color: var(--black-primary-color);
+}
+
+.blog__post__title > h1 {
+  font-family: "BodyFontBold";
+  font-size: 1.5rem;
+  font-weight: 900;
+  overflow: hidden;
+  height: auto;
+  padding: 0.3rem;
+  width: 40rem;
+  position: relative;
+}
+
+.blog__post__title > h1::after {
+  content: "...";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 1.5rem;
+  background: var(--white-main-background);
+}
+
+.blog__post__title > h2 {
+  margin-top: 1rem;
+  font-family: "BodyFontRegular";
+  font-weight: 100;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.blog__post__reactions {
+  margin-left: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.blog__post__reactions img {
+  width: 1.2rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+
+.blog__post__likes__comments {
+  display: flex;
+  align-items: center;
+  width: 35%;
+  justify-content: space-between;
+}
+
+.blog__post__likes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 44%;
+}
+
+.blog__post__likes > p {
+  font-size: 0.8rem;
+  font-family: "BodyFontRegular";
+}
+
+.blog__post__read__and__save {
+  display: flex;
+  align-items: center;
+  width: 17%;
+  justify-content: space-between;
+}
+
+.blog__post__read__and__save > p {
+  font-family: "BodyFontRegular";
+  opacity: 0.6;
+}
+
+.blog__post__read__and__save > button {
+  padding: 0.4rem;
+  border: none;
+  border-radius: 5px;
+  color: var(--black-primary-color);
+  font-family: "BodyFontRegular";
+  opacity: 0.7;
+  background: var(--primary-ash-background);
+  cursor: pointer;
+}
+
+/* CONTENT ADS */
+.content__ads__post {
+  background: var(--secondary-ash-background);
+  font-family: "BodyFontRegular";
+  padding: 1rem;
+  height: 18rem;
+  margin-top: 1.2rem;
+  width: 20rem;
+}
+
+.content__ads__post > img {
+  height: 30%;
+  width: 100%;
+}
+
+.content__ads__details {
+  margin-top: 1rem;
+}
+
+.content__ads__details > h1 {
+  font-size: 1rem;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.content__ads__details > p {
+  font-size: 0.8rem;
+  font-weight: 100;
+  opacity: 0.6;
+  margin-top: 0.3rem;
+}
+
+.content__ads__details > button {
+  background: var(--primary-blue-color);
+  margin-top: 0.8rem;
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  color: var(--white-main-background);
+  font-family: "BodyFontBold";
+  cursor: pointer;
+}

@@ -1,0 +1,132 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{blog.title}}</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/article.css" />
+  </head>
+  <body>
+    {{! header }}
+    <div class="body__default">
+      <header class="container">
+        <div class="header__left">
+          <div class="header__logo">
+            <h2><a href="../articles">DEV</a></h2>
+          </div>
+          <div class="header__search">
+            <span class="header__search__icon">
+              <input type="search" placeholder="search..." />
+              <img src="/assets/icons/Search.png" alt="search_icon" />
+            </span>
+          </div>
+        </div>
+        <div class="header__right">
+          <button><a href="../createArticle">Create Post</a></button>
+          <img src="/assets/icons/Notification.png" alt="notification" />
+          <img
+            src="/{{user.profilePicture}}"
+            alt="profile__picture"
+            class="header__profile__pic"
+          />
+        </div>
+      </header>
+    </div>
+    {{! end header }}
+
+    {{! section }}
+
+    <section class="content container">
+      <div class="content__reaction">
+        <div class="content__reaction__icon__count">
+          <img src="/assets/icons/Heart.png" alt="heart" />
+          <h3 class="content__reaction__count">{{blog.comments.length}}</h3>
+        </div>
+        <div class="content__reaction__icon__count">
+          <img src="/assets/icons/Bookmark.png" alt="bookmark" />
+          <h3 class="content__reaction__count">{{blog.likes.length}}</h3>
+        </div>
+        <div class="content__reaction__icon__count">
+          <img src="/assets/icons/More Circle.png" alt="more" />
+        </div>
+      </div>
+      <div class="content__post">
+        <div class="content__post__cover">
+          <img src="/{{blog.coverPhoto}}" alt="cover" />
+        </div>
+        <div class="content__container">
+          <div class="content__post__profile">
+            <img
+              src="/{{postOwner.profilePicture}}"
+              class="content__post__profile__picture"
+            />
+            <div class="content__post__profile__name__and__time__posted">
+              <h2>{{postOwner.username}}</h2>
+              <p>{{dateFormat blog.dateCreated}}</p>
+            </div>
+          </div>
+          <div class="content__title">
+            <h1>{{blog.title}}</h1>
+            <h2>{{trimList blog.trends}}</h2>
+          </div>
+          <div class="content__post">
+            {{{blog.body}}}
+          </div>
+        </div>
+      </div>
+      <div class="content__author">
+        <div class="content__author__profile">
+          <div class="author__picture__username">
+            <img
+              src="/{{postOwner.profilePicture}}"
+              class="content__post__profile__picture"
+            />
+            <h1>{{postOwner.username}}</h1>
+          </div>
+          <p class="hidden_user_id">{{ postOwner._id}}</p>
+          {{#if bool }}
+            <button class="follow__author">{{following}}</button>
+          {{/if }}
+          <div class="content__author__date__joined">
+            <h2>Joined</h2>
+            <h3>{{dateFormat postOwner.dateJoined}}</h3>
+          </div>
+        </div>
+
+        <div class="content__author__other">
+          <h1>More from <span id="username">{{postOwner.username}}</span></h1>
+          {{#each otherPost}}
+            <div class="content__author__other__post">
+              <h1>{{this.title}}</h1>
+              <h3>{{trimList this.trends}}</h3>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+
+    <script>
+
+      //APIS
+
+      let postOwnerId = document.querySelector('.hidden_user_id').textContent;
+      let followBtn = document.querySelector('.follow__author');
+
+      followBtn.textContent = localStorage.getItem('followMsg') || 'Follow'; //for refresh
+
+      followBtn.addEventListener('click', (e) => {
+      fetch(`/user/v1/follow/${postOwnerId}`, { method: 'POST'})
+        .then(res => res.json())
+        .then(jsonRes => {
+          followBtn.textContent = jsonRes.following;
+          localStorage.setItem('followMsg', jsonRes.following)
+        })
+        .catch(err => console.log(err))
+      })
+
+      
+
+
+    </script>
+  </body>
+</html>

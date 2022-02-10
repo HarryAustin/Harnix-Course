@@ -1,0 +1,40 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/login.css" />
+    <title>DEV Community</title>
+  </head>
+  <body>
+    <div class="body__default">
+      <header class="container">
+        <div class="header__left">
+          <div class="header__logo">
+            <h2>DEV</h2>
+          </div>
+          <div class="header__search">
+            <span class="header__search__icon">
+              <input type="search" placeholder="search..." />
+              <img src="/assets/icons/Search.png" alt="search_icon" />
+            </span>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <section class="container form">
+        <div class="form__heading">
+            <h1>Login user</h1>
+        </div>
+        <form action="/auth/v1/login" method="POST">
+            <input type="username" name="username" placeholder="username or email"/>
+            <input type="password" name="password" placeholder="your password"/>
+            <button>login</button>
+        </form>
+        <h3>Or <a href="./register-page">Register Here</a></h3>
+    </section>
+    
+
+    </body>
+</html>
