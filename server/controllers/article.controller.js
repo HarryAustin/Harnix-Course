@@ -77,7 +77,9 @@ exports.createArticlePost = async (req, res, next) => {
     const user = req.user.id;
     data.trends = data.trends.split("#").slice(1);
     data.user = user;
-    data.coverPhoto = req.file.path;
+    if (req.file) {
+      data.coverPhoto = req.file.path;
+    }
     data.userDetails = {
       name: req.user.username,
       profilePicture: req.user.profilePicture,

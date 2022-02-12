@@ -25,7 +25,7 @@
           <img src="/assets/icons/Notification.png" alt="notification" />
           <img
             class="header__profile__pic"
-            src="/{{ profilePicture }}"
+            src="{{ profilePicture }}"
             alt="profile_pic"
           />
         </div>
@@ -77,7 +77,7 @@
             <a href="article/{{this._id}}">
               <div class="blog__post">
                   <div class="blog__post__profile">
-                      <img src="/{{ this.userDetails.profilePicture }}" class="blog__post__profile__picture" />
+                      <img src="{{ this.userDetails.profilePicture }}" class="blog__post__profile__picture" />
                       <div class="blog__post__profile__name__and__time__posted">
                           <h2>{{ this.userDetails.name }}</h2>
                           <p>{{ dateFormat this.dateCreated }}</p>

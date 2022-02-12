@@ -7,14 +7,11 @@ const {
   loginGetController,
 } = require("../controllers/auth.controller");
 const { loginLimitter } = require("../services/login_throttle");
+const { cloudinaryMediaStorage } = require("../services/cloudinarySetup");
+
 const Route = express.Router();
 
-const storage = multer.diskStorage({
-  destination: "media/profile pictures",
-  filename: (req, file, cb) => {
-    cb(null, Math.floor(Math.random() * 100) + file.originalname);
-  },
-});
+const storage = cloudinaryMediaStorage("media/profile pictures");
 const upload = multer({ storage: storage });
 
 // POST

@@ -28,7 +28,7 @@
         <div class="header__right">
           <button>Create Post</button>
           <img src="/assets/icons/Notification.png" alt="notification" />
-         <img src = "/{{ postOwner.profilePicture }}" alt="profile__picture" class="header__profile__pic" />
+         {{!-- <img src = "{{ postOwner.profilePicture }}" alt="profile__picture" class="header__profile__pic" /> --}}
         </div>
       </header>
     </div>
@@ -46,7 +46,7 @@
     <textarea name="body" class="editorTextArea"></textarea>
      <div class="article__trends">
           <label for="trends">Trends: </label>
-          <input name="trends" id="trends" type="text" placeholder="backend tech code codeNewbie" />
+          <input name="trends" id="trends" type="text" placeholder="#backend #tech #code #codeNewbie" />
       </div>
     <button>Submit</button>
     </form>  
@@ -58,8 +58,20 @@
     <script src="/assets/froala_editor.pkgd.min.js"></script>
     <script>
       const editor = new FroalaEditor('textarea', {
-        imageUploadURL: '/upload_image'
-     });
+        imageUploadURL: 'https://api.cloudinary.com/v1_1/dsrboz5ga/image/upload',
+        imageUploadParams: {
+          'api_key': '233646963414113',
+          'upload_preset': "rrwlbahj",
+        },
+        imageUploadMethod: 'POST',
+        events: {
+          "image.uploaded": (response) => {
+            response = JSON.parse(response);
+            editor.image.insert(response.secure_url, false, null, editor.image.get(), response);
+            return false
+          }
+        }
+      });
     </script>
   </body>
 </html>

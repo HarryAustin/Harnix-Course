@@ -1,15 +1,9 @@
 const express = require("express");
 const articleRoute = express.Router();
 const multer = require("multer");
+const { cloudinaryMediaStorage } = require("../services/cloudinarySetup");
 
-// configure multer
-
-const storage = multer.diskStorage({
-  destination: "media/cover_photo",
-  filename: (req, file, cb) => {
-    cb(null, Math.floor(Math.random() * 1000) + file.originalname);
-  },
-});
+const storage = cloudinaryMediaStorage("media/article cover");
 const upload = multer({ storage: storage });
 
 // Controller

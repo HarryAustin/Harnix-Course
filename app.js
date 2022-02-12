@@ -97,21 +97,6 @@ app.get("/login", (req, res) => {
 });
 
 // FOR FROALA EDITOR IMAGES
-// /medi/cover_photo states where to store images... and its a public directory as well
-
-app.post("/upload_image", (req, res) => {
-  const folderName = "content_imgs";
-  fs.mkdir(path.resolve(__dirname, "media", folderName), (err) => {
-    FroalaEditor.Image.upload(req, "/media/content_imgs/", (err, data) => {
-      if (err) {
-        console.log(err);
-        return res.send(JSON.stringify(err));
-      }
-      res.send(data);
-    });
-  });
-});
-
 // END
 
 app.use((req, res, next) => {
