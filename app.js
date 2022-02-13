@@ -18,7 +18,7 @@ const { userIsLoggedIn } = require("./server/middlewares/authLogin.middleware");
 
 // SET up connect mongo
 const sessionStore = mongoStore.create({
-  mongoUrl: process.env.MONGO_URI,
+  mongoUrl: process.env.MONGO_URI_PROD,
   collectionName: "session",
 });
 
