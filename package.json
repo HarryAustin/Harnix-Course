@@ -4,7 +4,8 @@
   "description": "A node project of dev.to blog app backend clone.",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "start": "node app.js"
   },
   "author": "Harrison Osagiede",
   "license": "MIT",
