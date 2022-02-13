@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --black-primary-color: #090909;
+  --white-main-background: #ffffff;
+  --primary-ash-background: #efefef;
+  --secondary-ash-background: #f9f9f9;
+  /* --primary-blue-color: #3b49df; */
+  --primary-blue-color: rgba(59, 73, 223, 0.9);
+}
+
+@font-face {
+  font-family: titleFont;
+  src: url("/assets/fonts/ChelaOne-Regular.ttf");
+}
+
+@font-face {
+  font-family: BodyFontBold;
+  src: url("/assets/fonts/BalsamiqSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: BodyFontRegular;
+  src: url("/assets/fonts/BalsamiqSans-Regular.ttf");
+}
+
+body {
+  background: var(--white-main-background);
+  width: 80%;
+  margin: auto;
+}
+
+.entry__point {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.entry__point > button {
+  width: 60%;
+  background: var(--black-primary-color);
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 7px;
+  padding: 0.8rem 0.4rem;
+}
+
+.entry__point > button a {
+  color: var(--white-main-background);
+  font-family: "BodyFontBold";
+  text-decoration: none;
+}
+
+.entry__point > button a:hover {
+  color: var(--black-primary-color);
+}
+
+.entry__point > button:hover {
+  background: var(--white-main-background);
+  color: var(--black-primary-color);
+  border: 1px solid var(--black-primary-color);
+}

@@ -80,23 +80,9 @@ app.use("/auth/v1", authRoute);
 app.use("/blog/v1", userIsLoggedIn, articleRoute);
 app.use("/user/v1", userIsLoggedIn, userRoute);
 
-// app.get("/", (req, res) => {
-//   res.render("index", { layout: false });
-// });
-
-// app.get("/article", (req, res) => {
-//   res.render("article", { layout: false });
-// });
-
-// app.get("/registration", (req, res) => {
-//   res.render("registration", { layout: false });
-// });
-
-// app.get("/login", (req, res) => {
-//   console.log(req.body);
-//   res.render("login", { layout: false });
-// });
-// For testing purposes
+app.get("/", (req, res) => {
+  res.render("redirect", { layout: false });
+});
 
 // END
 
