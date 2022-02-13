@@ -8,7 +8,10 @@ const connectDB = async (cb) => {
     useUnifiedTopology: true,
   };
   try {
-    const connection = await mongoose.connect(process.env.MONGO_URI, options);
+    const connection = await mongoose.connect(
+      process.env.MONGO_URI_PROD,
+      options
+    );
     console.log(`connected at ${connection.connection.host}`);
     return cb();
   } catch (err) {
